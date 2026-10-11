@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-slate-50 text-slate-900 font-sans antialiased; }
+  /* Foco siempre visible para navegación con teclado */
+  :focus-visible { outline: 2px solid #059669; outline-offset: 2px; }
+}
+
+/* Respeta "reducir movimiento" del sistema */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Componentes reutilizables */
+@layer components {
+  .card { @apply bg-white rounded-2xl p-5 shadow-sm border border-slate-200; }
+  .btn-primary {
+    @apply inline-flex min-h-[48px] cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3
+           font-medium text-white transition duration-200 hover:bg-slate-700 active:scale-[0.99]
+           disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2.5
+           font-medium text-slate-700 transition duration-200 hover:bg-slate-200;
+  }
+  .input {
+    @apply min-h-[48px] w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900
+           placeholder:text-slate-400 transition duration-200
+           focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30;
+  }
+  .label { @apply mb-1.5 block text-sm font-medium text-slate-700; }
+}
